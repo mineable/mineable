@@ -8,7 +8,7 @@
     <meta property="og:url" content="https://mineable.github.io" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="is this cryptocurrency mineable" />
-    <meta property="og:description" content="Your description" />
+    <meta property="og:description" content="Is this cryptocurrency mineable?" />
     <meta property="og:image" content="https://mineable.github.io/mineable.webp" />
 
     <style type="text/css">
@@ -230,7 +230,7 @@
         <div class="wrapper">
             <section id="form">
                 <div class="picomplete">
-                    Is <input type="text" id="crypt"> <input type="button" id="check" value=" mineable?">
+                    Is <input type="text" id="crypt" placeholder="Bitcoin"> <input type="button" id="check" value=" mineable?">
                 </div>
                 <div id="res"></div>
             </section>
@@ -286,7 +286,7 @@
     </style>
     <script src="ccurs.js"></script>
     <script>
-        var selected = null;
+        var selected = ccurs[0];
         resel = document.querySelector('#res');
         class PickoComplite {
             constructor(obj = null) {
@@ -360,6 +360,7 @@
                 clickCallback: (target, node) => {
                     target.value = node.value;
                     selected = node;
+                    resel.innerHTML = '';
                 }
             }
         });
