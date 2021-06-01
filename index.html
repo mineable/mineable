@@ -210,6 +210,22 @@
             line-height: 1.5;
         }
         
+        [type=button],
+        a.btn {
+            display: inline-block;
+            border: solid 1px #e4e4e4;
+            padding: 0.5rem 1rem;
+            color: white;
+            background-color: rgb(56, 97, 251);
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        
+        [type=button]:hover,
+        a.btn:hover {
+            background-color: rgb(36, 77, 231);
+        }
+        
         .wrapper {
             width: 90%;
             max-width: 1400px;
@@ -221,6 +237,31 @@
             flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
+        }
+        
+        h3 a {
+            text-decoration: none;
+            color: inherit
+        }
+        
+        .tac p {
+            text-align: center;
+        }
+        
+        header,
+        footer {
+            background-color: #f2f2f2;
+            padding: 2rem;
+        }
+        
+        main {
+            padding: 5rem 0;
+        }
+        
+        #res {
+            padding: 2rem;
+            text-align: center;
+            font-size: 1.75rem;
         }
     </style>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -241,7 +282,7 @@
     <header>
         <div class="wrapper">
             <div class="fl">
-                <h3>Which coins are mineable?</h3>
+                <h3><a href="/">Which coins are mineable?</a></h3>
                 <a href="https://www.facebook.com/sharer/sharer.php?u=mineable.github.io" target="_blank"> Share on Facebook</a>
             </div>
         </div>
@@ -249,8 +290,9 @@
     <main>
         <div class="wrapper">
             <section id="form">
-                <div class="picomplete">
-                    Is <input type="text" id="crypt" placeholder="Bitcoin"> coin mineable? <input type="button" id="check" value="  Yes/No ? ">
+                <div class="tac">
+                    <p id="frm">Is <span class="picomplete"><input type="text" id="crypt" placeholder="Bitcoin"></span> coin mineable? <input type="button" id="check" value="  Yes/No ? "></p>
+                    <p id="frm2" class="hidden"><input type="button" id="restart" value="  Check another one? "></p>
                 </div>
                 <div id="res"></div>
                 <div class="partners hidden">
@@ -272,26 +314,10 @@
     </main>
     <footer>
         <div class="wrapper">
-            <p>&copy; mineable.github.io</p>
+            <p>&copy; mineable.github.io, 2021</p>
         </div>
     </footer>
     <style>
-        header,
-        footer {
-            background-color: #f2f2f2;
-            padding: 2rem;
-        }
-        
-        main {
-            padding: 5rem 0;
-        }
-        
-        #res {
-            padding: 2rem;
-            text-align: center;
-            font-size: 1.75rem;
-        }
-        
         #res .ay {
             color: darkgreen
         }
@@ -300,19 +326,8 @@
             color: darkred
         }
         
-        a[href ^="http"]:after {
+        main a[href ^="http"]:after {
             content: " " url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAVklEQVR4Xn3PgQkAMQhDUXfqTu7kTtkpd5RA8AInfArtQ2iRXFWT2QedAfttj2FsPIOE1eCOlEuoWWjgzYaB/IkeGOrxXhqB+uA9Bfcm0lAZuh+YIeAD+cAqSz4kCMUAAAAASUVORK5CYII=);
-        }
-        
-        [type=button],
-        a.btn {
-            display: inline-block;
-            border: solid 1px #e4e4e4;
-            padding: 0.5rem 1rem;
-            color: white;
-            background-color: rgb(56, 97, 251);
-            text-decoration: none;
-            border-radius: 4px;
         }
         
         .picomplete {
@@ -342,6 +357,10 @@
         
         .picomplete-items div:hover {
             background-color: #e9e9e9;
+        }
+        
+        .partners {
+            padding-bottom: 2rem;
         }
     </style>
     <script src="ccurs.js"></script>
@@ -426,7 +445,7 @@
         });
 
         document.querySelector('#check').addEventListener('click', el => {
-            rtext = '<h2> ' + selected['value'] + ' ( ' + selected['data']['symbol'] + ' ) Status</h2><p>';
+            rtext = '<h3> ' + selected['value'] + ' ( ' + selected['data']['symbol'] + ' ) Status</h3><p>';
             if (selected['data']['mineable'] == 1) {
                 rtext += "<span class = 'ay'>Congratulations! ";
             } else {
@@ -439,10 +458,19 @@
             rtext += ' mineable';
             rtext += '</span></p>';
             resel.innerHTML = rtext;
+            document.querySelector('#frm').classList.add('hidden');
+            document.querySelector('#frm2').classList.remove('hidden');
             document.querySelectorAll('.partners').forEach(e => {
                 e.classList.remove('hidden');
             });
-        })
+        });
+        document.querySelector('#restart').addEventListener('click', el => {
+            resel.innerHTML = '';
+            document.querySelector('#frm2').classList.add('hidden');
+            document.querySelector('#frm').classList.remove('hidden');
+            document.querySelector('#crypt').value = '';
+            document.querySelector('#crypt').focus();
+        });
     </script>
 </body>
 
