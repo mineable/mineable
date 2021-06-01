@@ -17,6 +17,7 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
+    <link rel="canonical" href="https://mineable.github.io">
     <style type="text/css">
         html {
             line-height: 1.15;
@@ -194,7 +195,8 @@
             display: none
         }
         
-        [hidden], .hidden {
+        [hidden],
+        .hidden {
             display: none
         }
         
@@ -221,6 +223,18 @@
             justify-content: space-between;
         }
     </style>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-197517555-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-197517555-2');
+    </script>
 </head>
 
 <body>
@@ -243,9 +257,9 @@
                     <p>You can also earn crypto with:</p>
                     <ul>
                         <li>
-                            <p>Staking</p>
-                            <h2>25% Staking reward for ZIL</h2>
-                            <p>Get a 25% annual staking reward on your ZIL holdings with CEX.io. Reap your increased staking rewards before the offer ends.</p>
+                            <h3>Staking</h3>
+                            <h4>25% Staking reward for ZIL</h4>
+                            <p>Get a 25% annual staking reward on your ZIL holdings with <a href="https://cex.io/r/0/up139098137/0/" target="_blank">CEX.io</a>. Reap your increased staking rewards before the offer ends.</p>
                             <p><a class="btn" href="https://cex.io/r/115/up139098137/115" target="_blank">Earn 25% with ZIL staking</a></p>
                         </li>
                     </ul>
@@ -289,15 +303,18 @@
         a[href ^="http"]:after {
             content: " " url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAVklEQVR4Xn3PgQkAMQhDUXfqTu7kTtkpd5RA8AInfArtQ2iRXFWT2QedAfttj2FsPIOE1eCOlEuoWWjgzYaB/IkeGOrxXhqB+uA9Bfcm0lAZuh+YIeAD+cAqSz4kCMUAAAAASUVORK5CYII=);
         }
-       [type=button], a.btn {
-    display: inline-block;
-    border: solid 1px #e4e4e4;
-    padding: 0.5rem 1rem;
-    color: white;
-    background-color: rgb(56, 97, 251);
-    text-decoration: none;
-    border-radius: 4px;
-}
+        
+        [type=button],
+        a.btn {
+            display: inline-block;
+            border: solid 1px #e4e4e4;
+            padding: 0.5rem 1rem;
+            color: white;
+            background-color: rgb(56, 97, 251);
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        
         .picomplete {
             position: relative;
             display: inline-block;
@@ -409,7 +426,7 @@
         });
 
         document.querySelector('#check').addEventListener('click', el => {
-            rtext = '<h2> '+selected['value'] + ' ( ' + selected['data']['symbol'] + ' ) status</h2><p>';
+            rtext = '<h2> ' + selected['value'] + ' ( ' + selected['data']['symbol'] + ' ) Status</h2><p>';
             if (selected['data']['mineable'] == 1) {
                 rtext += "<span class = 'ay'>Congratulations! ";
             } else {
@@ -423,7 +440,7 @@
             rtext += '</span></p>';
             resel.innerHTML = rtext;
             document.querySelectorAll('.partners').forEach(e => {
-                    e.classList.remove('hidden');
+                e.classList.remove('hidden');
             });
         })
     </script>
