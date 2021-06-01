@@ -7,10 +7,16 @@
     <title>is mineable ?</title>
     <meta property="og:url" content="https://mineable.github.io" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="is this cryptocurrency mineable" />
-    <meta property="og:description" content="Is this cryptocurrency mineable?" />
-    <meta property="og:image" content="https://mineable.github.io/mineable.webp" />
-
+    <meta property="og:title" content="Which coins are mineable?" />
+    <meta property="og:description" content="This site checks which coins are mineable." />
+    <meta property="og:image" content="https://mineable.github.io/mineable.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
     <style type="text/css">
         html {
             line-height: 1.15;
@@ -188,12 +194,12 @@
             display: none
         }
         
-        [hidden] {
+        [hidden], .hidden {
             display: none
         }
         
         input {
-            padding: 10px;
+            padding: 0.5rem 1rem;
             cursor: pointer;
         }
         
@@ -212,7 +218,7 @@
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            justify-content: space-around;
+            justify-content: space-between;
         }
     </style>
 </head>
@@ -221,7 +227,7 @@
     <header>
         <div class="wrapper">
             <div class="fl">
-                <h3>is this cryptocurrency mineable</h3>
+                <h3>Which coins are mineable?</h3>
                 <a href="https://www.facebook.com/sharer/sharer.php?u=mineable.github.io" target="_blank"> Share on Facebook</a>
             </div>
         </div>
@@ -230,14 +236,25 @@
         <div class="wrapper">
             <section id="form">
                 <div class="picomplete">
-                    Is <input type="text" id="crypt" placeholder="Bitcoin"> <input type="button" id="check" value=" mineable?">
+                    Is <input type="text" id="crypt" placeholder="Bitcoin"> coin mineable? <input type="button" id="check" value="  Yes/No ? ">
                 </div>
                 <div id="res"></div>
+                <div class="partners hidden">
+                    <p>You can also earn crypto with:</p>
+                    <ul>
+                        <li>
+                            <p>Staking</p>
+                            <h2>25% Staking reward for ZIL</h2>
+                            <p>Get a 25% annual staking reward on your ZIL holdings with CEX.io. Reap your increased staking rewards before the offer ends.</p>
+                            <p><a class="btn" href="https://cex.io/r/115/up139098137/115" target="_blank">Earn 25% with ZIL staking</a></p>
+                        </li>
+                    </ul>
             </section>
             <section id="explane">
+                <p>This site checks which coins are mineable.</p>
                 <p>The term crypto mining means gaining cryptocurrencies by solving cryptographic equations through the use of computers. This process involves validating data blocks and adding transaction records to a public record (ledger) known as a blockchain</p>
             </section>
-        </div>
+            </div>
     </main>
     <footer>
         <div class="wrapper">
@@ -254,7 +271,33 @@
         main {
             padding: 5rem 0;
         }
-        #res {padding: 2rem;text-align: center;}
+        
+        #res {
+            padding: 2rem;
+            text-align: center;
+            font-size: 1.75rem;
+        }
+        
+        #res .ay {
+            color: darkgreen
+        }
+        
+        #res .an {
+            color: darkred
+        }
+        
+        a[href ^="http"]:after {
+            content: " " url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAVklEQVR4Xn3PgQkAMQhDUXfqTu7kTtkpd5RA8AInfArtQ2iRXFWT2QedAfttj2FsPIOE1eCOlEuoWWjgzYaB/IkeGOrxXhqB+uA9Bfcm0lAZuh+YIeAD+cAqSz4kCMUAAAAASUVORK5CYII=);
+        }
+       [type=button], a.btn {
+    display: inline-block;
+    border: solid 1px #e4e4e4;
+    padding: 0.5rem 1rem;
+    color: white;
+    background-color: rgb(56, 97, 251);
+    text-decoration: none;
+    border-radius: 4px;
+}
         .picomplete {
             position: relative;
             display: inline-block;
@@ -366,12 +409,22 @@
         });
 
         document.querySelector('#check').addEventListener('click', el => {
-            var rtext = selected['value']+" ("+selected['data']['symbol']+") is ";
-            if(selected['data']['mineable']==0) {
-                rtext +='NOT';
+            rtext = '<h2> '+selected['value'] + ' ( ' + selected['data']['symbol'] + ' ) status</h2><p>';
+            if (selected['data']['mineable'] == 1) {
+                rtext += "<span class = 'ay'>Congratulations! ";
+            } else {
+                rtext += "<span class = 'an'>";
+            }
+            rtext += selected['value'] + " (" + selected['data']['symbol'] + ") is ";
+            if (selected['data']['mineable'] == 0) {
+                rtext += 'NOT';
             }
             rtext += ' mineable';
+            rtext += '</span></p>';
             resel.innerHTML = rtext;
+            document.querySelectorAll('.partners').forEach(e => {
+                    e.classList.remove('hidden');
+            });
         })
     </script>
 </body>
